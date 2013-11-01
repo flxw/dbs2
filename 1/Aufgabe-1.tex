@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{gensymb}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 1}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\textbf{a)} Gesamtkapazität = $10 surfaces * 10000 \frac{tracks}{surface} *
+1000 \frac{sectors}{track} * 512 \frac{byte}{sector} * 0.000000001
+\frac{GB}{byte} = 51.2GB$
+\\[1em]
+\textbf{b)} Ein Zylinder ist die Menge aller übereinanderliegenden Spuren.
+Also $10 \frac{tracks}{cylinder} * 1000 \frac{sectors}{track} * 0.25
+\frac{blocks}{sector} = 2500\frac{blocks}{cylinder}$
+\\[1em]
+\textbf{c)}  Die Latenzzeit setzt sich zusammen aus der vernachlässigbaren
+Kommunikationsdauer, der Such-, Rotations- und Transferzeit. Die Transferzeit
+bleibt immer gleich, bei ihr gibt es kein Minimum oder Maximum.
+\begin{align*}
+    \sphericalangle_{sector} &= 360\degree * 80\% \frac{sector}{track} * 0.001\frac{track}{sector} = 0.288\degree\\
+    \sphericalangle_{gap} &= 360\degree * 20\% \frac{gap}{track} * 0.001\frac{track}{gap} = 0.072\degree\\
+    \sphericalangle_{block} &= 4 * \sphericalangle_{sector} + 3 * \sphericalangle_{gap} = 1.368\degree\\
+    \Rightarrow L_{Transfer} &= \frac{\sphericalangle_{block}}{360\degree} * 6.0ms = 0.0228ms
+\end{align*}
+
+Die durchschnittliche Suchzeit lässt sich mittels eines Suchlaufs über
+$\frac{1}{3}$ der Sektoren gut annähern:
+$$L_{avgSeek} = 1ms + 0.001ms * 10000/3 = 4.332ms$$
+
+Die durchschnittliche Rotationszeit ist die Zeit, die die Platte für eine halbe
+Umdrehung benötigt:
+$$L_{avgRotation} = \frac{6ms}{2} = 3ms$$
+
+Daraus folgt $L_{avg} = 0.0228ms + 4.332ms + 3ms = 7.3548ms$
+\\[1em]
+\textbf{d)} Gesucht ist die durchschnittliche Latenzzeit für das Lesen einer gesamten Spur.
+$$L_{avgTrack} = L_{avgSeek} + L_{avgRotation} + L_{Transfer} = 4.332ms + 3ms + 6ms = 13.332ms$$
+\end{document}
+% vim: tw=80
