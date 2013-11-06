@@ -22,19 +22,32 @@
 
 \begin{document}
 \textbf{a)}  Ein Hersteller Block enthält 11 Tupel, ein Produkte Block 13 Tupel.
-\newline
-25000 / 11 =  2272 + 8 Tupel a' 350 Byte \newline
-75000 / 13 =  5769 + 3 Tupel a' 300 Byte \newline
-Da die Tupel von Produkten und Herstellern nicht in einem Block sein sollen, können die "Resttupel" nicht zusammen gelegt werden, folglich werden diese Jeweils in einen eigenen Block gelegt.
-\newline
-Insgesamt werden also 5769 + 2272 + 2 = 8043 Blöcke benötigt 
+\begin{align*}
+    25000 / 11 &=  2272 + 8 tupel\\
+    75000 / 13 &=  5769 + 3 tupel 
+\end{align*}
 
-\textbf{b)}  Jeweils 3 Hersteller passen zusammen mit ihren Produkten in einen Block (3750 Byte) 
-25000 / 3 = 8333,332 \^= 8334 Blöcken
+Da die Tupel von Produkten und Herstellern nicht in einem Block sein sollen,
+können die "Resttupel" nicht zusammen gelegt werden, folglich werden diese
+Jeweils in einen eigenen Block gelegt.\\
+Insgesamt werden also $5769 + 2272 + 2 = 8043$ Blöcke benötigt 
+\\[1em]
+\textbf{b)}  Jeweils 3 Hersteller passen zusammen mit ihren Produkten in einen
+Block, was insgesamt 3750 Byte benötigt:
+$$25000 / 3 = 8333,332 \approx 8334 blocks$$
+\\[1em]
+\textbf{c)}
+\begin{enumerate}
+    \item Speichervariante a, da einfach die zusammenhängenden Blöcke der
+        Hersteller ausgelesen werden 	müssen. Vorteilhaft an Variante a ist,
+        dass aller Hersteller am Stück ausgelesen werden können, ohne dass dafür
+        große Strecken vom Lesekopf abgefahren werden müssen.
 
-\textbf{c)}  1) Speichervariante a, da einfach die zusammenhängenden Blöcke der Hersteller ausgelesen werden 	müssen. Vorteilhaft an Variante a ist, dass aller Hersteller am Stück ausgelesen werden können, ohne dass dafür große Strecken vom Lesekopf abgefahren werden müssen.
-
-2) Variante b, da Hersteller und Produkte bereits zusammen liegen und man nicht für jeden Hersteller erst andere Blöcke zum finden der relevanten Daten ansteuern muss. Für den Join, müssen also keine Vergleiche mehr durchgeführt werden, da die zusammengehörigen Tupel schon zusammen liegen.
+    \item Variante b, da Hersteller und Produkte bereits zusammen liegen und man
+        nicht für jeden Hersteller erst andere Blöcke zum finden der relevanten
+        Daten ansteuern muss. Für den Join, müssen also keine Vergleiche mehr
+        durchgeführt werden, da die zusammengehörigen Tupel schon zusammen liegen.
+\end{enumerate}
 
 \end{document}
 % vim: tw=80

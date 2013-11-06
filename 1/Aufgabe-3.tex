@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 
 \lhead{\textbf{Datenbanksysteme II}\\
-\textbf{Lösung von Aufgabe 2}}
+\textbf{Lösung von Aufgabe 4}}
 \rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
 \textbf{Übungsgruppe B}}
 \cfoot{}
@@ -23,11 +23,22 @@
 
 \begin{document}
 \textbf{a)} 
-40 Byte + 10 Byte * p
-40 Byte + (2 Byte + 25 * 2 Byte)*p
+Die Wahrscheinlichkeit $p$ besagt, wie wahrscheinlich jedes der optionalen
+Attribute verwendet wird.  Also ist die erwartete Größe des Tupels in
+Abhängigkeit von $p$ bei Datensätzen fester Länge (jedes Extra-Attribut benötigt
+10 Byte):
+$$40 Byte + 25 * p * 10 Byte$$
+
+Die Sequenz der optionalen Attribute wird immer mit einem 2-Byte-Tag
+abgeschlossen, sodass selbst bei keinem optionalen Attribut der Datensatz 42
+Byte groß ist. Ansonsten gilt:
+$$40 Byte + 2 Byte + 25*p*2 Byte$$
 
 \textbf{b)}
-Gucken, für welche p die erste Formel kleinere Ergebnisse als die zweite Formel
-abliefert
+Trägt man beide Funktionen abhängig von $p$ auf einem Intervall von $[0;1]$ auf,
+so fällt auf dass die Speicherung mit Datensätzen fester Größe bis zu einer
+Wahrscheinlichkeit von $p=0.0125$ platzsparender ist. Dies liegt darin
+begründet, dass bei keinem optionalen Tupel die 2 Byte des Schlusstags zu
+unnötigem Speicherverbrauch führen.
 \end{document}
 % vim: tw=80
