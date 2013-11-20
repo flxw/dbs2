@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 2}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\cfoot{}
+\rfoot{Seite \thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+Anzahl Blöcke die für n Datensätze gebraucht werden:
+\begin{align*}
+    \lceil \frac{n}{(0,8 * 30)} \rceil
+\end{align*}
+
+\noindent
+Da in jeden Block nur 80\% der 30 Datensätze passen, können nur 24 Datensätze in einen Block. Das aufrunden ist notwendig, da wir am Ende einen Block haben, der zu weniger als 80 \% gefüllt sein kann, wenn n nicht genau aufgeht. \\
+
+\noindent
+\textbf{a)} 
+Anzahl Blöcke für den dicht besetzten index:
+\begin{align*}
+    &\lceil \frac{n}{(0,8 * 200)} \rceil \\
+	\Rightarrow
+	&\lceil \frac{n}{(0,8 * 30)} \rceil +  \lceil \frac{n}{(0,8 * 200)} \rceil
+\end{align*}
+
+\noindent 
+Bei einem dicht besetzten Index gibt es für jeden Wert in einem Block einen Index.  Daher Werden alle Datensätze auf die 160 Datensätze verteilt. 
+
+\noindent
+\textbf{b)} 
+Anzahl Blöcke für den dünn besetzten Index:
+\begin{align*}
+    &\lceil \frac{\lceil \frac{n}{(0,8 * 30)} \rceil}{(0,8 * 200)} \rceil \\
+	\Rightarrow
+	&\lceil \frac{n}{(0,8 * 30)} \rceil +  \lceil \frac{\lceil \frac{n}{(0,8 * 30)} \rceil}{(0,8 * 200)} \rceil
+\end{align*}
+
+\noindent
+Der dicht besetzte Index braucht nur für jeden Block der durch die Datensätze entsteht einen Indexeintrag.
+\end{document}
+% vim: tw=80
+
+\end{document}
