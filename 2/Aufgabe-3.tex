@@ -52,9 +52,11 @@ nichts.
 Beim Löschen der 5 ist der Knoten der 7 unterbesetzt, und wird mit dem
 rechten Geschwisterknoten fusioniert. Dadurch ist der innere Knoten unterbesetzt
 und wird mit dem rechten Knoten verschmolzen. Dadurch ist wiederum dessen
-Vaterknoten unterbesetzt. Diesem wird durch eine Verschmelzung mit dem rechten
-Geschwisterknoten entgegengewirkt. Dadurch wird die Wurzel unnötig, da ein
-Ersatz entstanden ist. Das Löschen der 7 ist dann wieder trivial - sie kann
+Vaterknoten unterbesetzt. Dafür wird der Split-Key des Vaterknotens (der Wurzel)
+runtergezogen, sodass nun die 23 im Knoten steht. Dann wird mit dem rechten
+Geschwisterknoten fusioniert, sodass die nun leere Wurzel ersetzt wird.
+
+Das Löschen der 7 ist dann wieder trivial - sie kann
 einfach entfernt werden.
 \begin{center}
     \includegraphics{delete_4.PNG}

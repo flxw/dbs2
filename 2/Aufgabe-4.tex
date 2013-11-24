@@ -25,11 +25,22 @@
 \includegraphics[width=\textwidth]{B+Baum_falsch.png}
 
 \begin{enumerate}
-    \item In jedem Knoten müssen mindestens 2 Elemente vorhanden sein
+    \item In jedem Knoten müssen mindestens 3 Elemente vorhanden sein
 
-    \item In diesem Fall müssten die beiden Zeiger einfach vertauscht werden um den Fehler zu korrigieren. Denn Der Pointer der rechts von einem Element ist zeigt auf einen Knoten, der nur Elemente enthält die größer als das 'Vaterelement' sind. Für die linke Seite gilt es Analog mit dem unterschied das der linke Pointer auf kleinere Werte zeigt
+    \item In diesem Fall müssten die beiden Zeiger einfach vertauscht werden um
+        den Fehler zu korrigieren. Denn Der Pointer der rechts von einem Element
+        ist zeigt auf einen Knoten, der nur Elemente enthält die größer als das
+        'Vaterelement' sind. Für die linke Seite gilt es Analog mit dem
+        Unterschied das der linke Pointer auf kleinere Werte zeigt
 
-    \item Hier ist ein ähnlicher Fehler wie bei Punkt 2. Der linke Pointer des Elements '13' zeigt auf Elemente die größer bzw. gleich dem 'Vaterelement' sind. Um den Fehler hier zu beheben, könnte man z.Bsp. den falschen Knoten mit dem rechten Geschwisterknoten kombinieren.
+    \item Hier ist ein ähnlicher Fehler wie bei Punkt 2. Der linke Pointer des
+        Elements '13' zeigt auf Elemente die größer bzw. gleich dem
+        'Vaterelement' sind. Um den Fehler hier zu beheben, könnte man z.B. die
+        13 durch eine 15 ersetzen.
+
+    \item Der leere rechte Block, auf den der rechte Zeiger der Wurzel zeigt,
+        wird als nicht weiter beschriebener Teilbaum verstanden. Ansonsten ist
+        er selbstverständlich auch ein Fehler.
  
 \end{enumerate}
 
