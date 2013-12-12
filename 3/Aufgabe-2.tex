@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 2}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\begin{enumerate}[a)]
+    \item In der ersten Phase wird immer der ganze zur Verfügung stehende
+        Hauptspeicher befüllt. Also entstehen bei der Sortierung von R
+        $\frac{2^{13}}{2^7} = 2^6 = 64$ Teillisten. Bei der Sortierung von S
+        sind es $\frac{2^{10}}{2^7} = 2^3 = 8$ Teillisten.
+
+    \item In Phase 1 werden bis zu $M - 1$ sortierte Teillisten erzeugt. In
+        Phase 2 werden denn die Köpfe dieser Liste in den Hauptspeicher geladen.
+        Ein Block ist für den Output reserviert. Dementsprechend können maximal
+        $(M-1) * M$ Blöcke sortiert werden, hier also $128*127 = 16256 \approx
+        2^{17}$
+
+    \item Beim Sort-Merge-Join werden erst die beiden Relationen R und S mittel
+        TPMMS vorsortiert. Dies kostet pro Block 4 I/O, da die Teillisten
+        erstellt, geschrieben, deren Köpfe gelesen und sortiert werden müssen,
+        und dann das Endergebnis geschrieben werden muss. Also $4*(B(R) + B(S))
+        I/O$ für Phase 1. In der zweiten Phase werden die Köpfe der sortierten
+        Relationen gelesen und im Falle eines gemeinsamen Tupels $A$ werden die
+        Tupel verjoint, was insgesamt auch wieder $B(R)+B(S) I/O$ kostet.
+        Insgesamt fallen also $5*(B(R)+B(S)) = 41600 I/O$ an.
+
+    \item Beim TPMMS wird eine Teilliste mit nur einem Block darin angelegt.
+        Dies ist aber kein Problem in dem Sinne, dass dadurch das Verfahren
+        nicht mehr funktioniert.
+\end{enumerate}
+\end{document}
+% vim: tw=80

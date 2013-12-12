@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 4}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+Es wird angenommen, dass die richtige Anfrage in relationaler Algebra folgendermaßen aussieht:
+$$\sigma_{titel='King Kong'}(SpieltMit) \bowtie \sigma_{geschlecht='w'}(Schauspieler)$$
+\newline
+\begin{itemize}[leftmargin=5em]
+    \item[\textbf{Sort-basiert:}] Beim einfachen Sort-basierten Join
+        werden beide Relationen erst mit TPMMS vorsortiert (Hier könnte dann auch
+        gleich die Selektion angewandt werden). Dieser erste schritt kostet
+        schon 4 I/O pro Block. Anschließend werden die Köpfe der sortierten
+        Relationen gelesen und die passenden Tupel verjoint. Somit ergeben sich
+        hier I/O-Kosten von $5*(B(SpieltMit)+B(Schauspieler)) = 100000$.
+
+    \item[\textbf{Index-basiert:}] Zuerst wird der Index auf
+        \textit{Schauspieler.name} eingelesen. Dann werden die Tupel von
+        \textit{SpieltMit} sequentiell eingelesen, und immer geprüft, ob sich
+        der Name des aktuellen SpieltMit-Tupels im Index von Schauspieler
+        wiederfindet. Wenn ja, wird dieses Tupel geholt, und auf
+        \textit{geschlecht='w'} geprüft. Trifft dies auch zu, wird gejoint.
+        Im Schnitt gibt es
+        $T(Schauspieler)/V(Schauspieler,Y)$ Schauspieler, die
+        an einem Film $Y$ beteiligt sind. Mit der Annahme, dass jeder
+        zweite Schauspieler weiblich ist, ergeben sich I/O-Kosten
+        von $T(SpieltMit)*T(Schauspieler)/V(Schauspieler,Y) = 10000*0.5 = 5000$.
+
+    \item[\textbf{Hash-basiert:}] Alle Tupel von R und S werden jeweils
+        eingelesen, nach Join-Attributen in Buckets gehasht, und diese Buckets
+        wieder auf Disk geschrieben. Anschließend werden die Buckets wieder
+        gelesen, woraus sich $3*(B(S)*B(R)) = 3*(10000+10000) = 60000$ I/O
+        ergeben.
+\end{itemize}
+\end{document}
+% vim: tw=80
