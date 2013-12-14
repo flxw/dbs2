@@ -24,6 +24,8 @@
 \begin{document}
 Es wird angenommen, dass die richtige Anfrage in relationaler Algebra folgendermaßen aussieht:
 $$\sigma_{titel='King Kong'}(SpieltMit) \bowtie \sigma_{geschlecht='w'}(Schauspieler)$$
+Weiterhin gehen wir davon aus, dass ein Block genau ein Tupel fasst, sodass
+$B(R) = T(R)$.
 \newline
 \begin{itemize}[leftmargin=5em]
     \item[\textbf{Sort-basiert:}] Beim einfachen Sort-basierten Join
@@ -39,11 +41,11 @@ $$\sigma_{titel='King Kong'}(SpieltMit) \bowtie \sigma_{geschlecht='w'}(Schauspi
         der Name des aktuellen SpieltMit-Tupels im Index von Schauspieler
         wiederfindet. Wenn ja, wird dieses Tupel geholt, und auf
         \textit{geschlecht='w'} geprüft. Trifft dies auch zu, wird gejoint.
-        Im Schnitt gibt es
-        $T(Schauspieler)/V(Schauspieler,Y)$ Schauspieler, die
-        an einem Film $Y$ beteiligt sind. Mit der Annahme, dass jeder
-        zweite Schauspieler weiblich ist, ergeben sich I/O-Kosten
-        von $T(SpieltMit)*T(Schauspieler)/V(Schauspieler,Y) = 10000*0.5 = 5000$.
+        Angenommen, im Schnitt gäbe es
+        $\frac{B(Schauspieler)}{V(Schauspieler,Y)}$ gleichnamige Schauspieler
+        $Y$ (sagen wir, jeder 100te heißt gleich). Muss der Index nicht noch extra von der Disk geholt werden,
+        so ergeben sich IO-Kosten von
+        $B(SpieltMit)*\frac{B(Schauspieler)}{V(Schauspieler,Y)} = 10000 * \frac{10000}{100} = 1000000$.
 
     \item[\textbf{Hash-basiert:}] Alle Tupel von R und S werden jeweils
         eingelesen, nach Join-Attributen in Buckets gehasht, und diese Buckets

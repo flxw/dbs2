@@ -31,7 +31,7 @@
         Phase 2 werden denn die Köpfe dieser Liste in den Hauptspeicher geladen.
         Ein Block ist für den Output reserviert. Dementsprechend können maximal
         $(M-1) * M$ Blöcke sortiert werden, hier also $128*127 = 16256 \approx
-        2^{17}$
+        2^{14}$
 
     \item Beim Sort-Merge-Join werden erst die beiden Relationen R und S mittel
         TPMMS vorsortiert. Dies kostet pro Block 4 I/O, da die Teillisten
@@ -42,9 +42,9 @@
         Tupel verjoint, was insgesamt auch wieder $B(R)+B(S) I/O$ kostet.
         Insgesamt fallen also $5*(B(R)+B(S)) = 41600 I/O$ an.
 
-    \item Beim TPMMS wird eine Teilliste mit nur einem Block darin angelegt.
+    \item Beim TPMMS wird dann eine Teilliste mit nur einem Block darin angelegt.
         Dies ist aber kein Problem in dem Sinne, dass dadurch das Verfahren
-        nicht mehr funktioniert.
+        nicht mehr funktionieren würde.
 \end{enumerate}
 \end{document}
 % vim: tw=80
