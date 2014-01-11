@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 3}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\textbf{a)} Es wird die kleinere Relation zuerst gehasht. Dadurch, dass die
+Hashfunktion $h$ eine Gleichverteilung der Datenblöcke auf die Buckets
+garantiert, befinden sich in einem Bucket maximal $\frac{B(S)}{k}$ Datenblöcke.
+Da nur ein solches Konstrukt in den HS passen muss, und sonst nur die $k-1$
+Bucket-Köpfe, errechnet sich der HS-Verbrauch folgendermaßen:
+
+\begin{align*}
+    \frac{B(S)}{k} + k - 1 &\leq M - 1\\
+    \Leftrightarrow B(S) + k^2 &\leq Mk\\
+    \Leftrightarrow k^2 - Mk + B(S) &\leq 0\\
+    \Rightarrow k &= \frac{M}{2} \pm \sqrt{\left(\frac{M}{2}\right)^2 - B(S)}\\
+    k_1 &= 16\\
+    k_2 &= 25
+\end{align*}
+
+\textbf{b)} Die IO-Kosten für den Standard-Hashjoin betragen $3*(B(S)+B(R))$.
+Dadurch, dass aber nun $\frac{B(S)}{k}$ Blöcke nicht für das Hashen
+geschrieben werden, und dementsprechend auch nicht wieder gelesen werden müssen,
+werden für Tupel, die in den ersten Bucket hashen, jeweils 2 IO gespart.
+Insgesamt spart man also $\frac{2}{k}*(B(S)+B(R))$ IO.
+Mit obiger Gleichung zusammen ergibt das:
+
+    $$(3-\frac{2}{k} * (B(S)+B(R))$$
+
+Für $k=20$ bedeutet das also: $2610$.
+\end{document}
+% vim: tw=80
