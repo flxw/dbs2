@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 1}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+
+\begin{section}{Aufgabe 1}
+\textbf{a)} 
+$\frac{T(W) * T(X) * T(Y) * T(Z)}{max( V(W,b), V(X,b) ) * max( V(X,c) * V(Y,c)) * max( V(Y,d), V(Z,d)) } = 
+\frac{300 * 600 * 900 * 1200}{60 * 100 * 60} = \frac{300 * 600 * 900 * 1200}{60 * 100 * 60} =  \frac{300 * 900 * 1200}{600} = 540000$
+
+\noindent \textbf{b)}
+$\frac{T(W)}{V(W,a)}  = \frac{300}{30} = 10$
+
+\noindent \textbf{c)}
+$\frac{T(Y)}{V(Y,c)}  = \frac{900}{50} = 10$
+
+
+\noindent \textbf{d)}
+$\frac{\frac{T(Y)}{V(Y,c)} * T(Z)}{max( \frac{V(Y,d)}{(\frac{T(Y)}{V(Y,c)})})}  = \frac{18-1200}{max(\frac{60}{18},40)} = 6480 $
+
+\noindent \textbf{e)}
+$T(W)*T(Y) = 300 * 900 = 270000$
+
+\noindent \textbf{f)}
+$\frac{1}{3} * \frac{T(Z)}{V(Z,d)} = \frac{1200}{3*40}=10$
+
+\noindent \textbf{g)}
+$\frac{T(Z)}{V(Z,a)*V(Z,d)} = \frac{1200}{300*40} = \frac{1}{10} =0,1$
+
+\noindent \textbf{h)}
+$\frac{1}{3} * \frac{T(Z)}{V(Z,a)*V(Z,d)} = \frac{1200}{3*300*40}$
+
+\noindent \textbf{i)}
+$\frac{T(X)*T(Z)}{V(X,b)*V(Z,d)} = \frac{600*1200}{50*40} = 360$
+
+\end{section}
+\end{document}
+% vim: tw=80
