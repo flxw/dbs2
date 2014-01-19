@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 2}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+Aus der Tabelle mit den Wertverteilungen ergeben sich $T(R)=52$ und $T(S)=78$.
+Die einfache Abschätzung ergibt damit
+$$T (R \bowtie S) = \frac{52*78}{20} = 202,8 \approx = 203$$
+
+Bei der komplexeren Schätzung nutzt man die Werte aus der Tabelle um die
+Join-Kardinalitäten für die Werte $0$,$1$ und $2$ zu berechnen:
+$5*10+6*8+4*5 = 118$. Da keine genauen Werte für die Vorkommen von $3$ und $4$ in
+beiden Relationen vorhanden sind, muss man jeweils für die andere Relation
+schätzen: $5*\frac{48}{V(S,B)-4} = 15$ und $7*\frac{32}{V(R,B)-4} = 14$. Für die
+restlichen Werte, für die keine Histogramm-Daten existieren, wird $(V(R,B)-5) *
+3 * 2$ geschätzt.
+
+Insgesamt ergibt sich die Schätzung mit den Histogramm-Daten zu:
+$$T(R \bowtie S) = 118 + 15 + 14 + 15*3*2 = 237$$
+\end{document}
+% vim: tw=80

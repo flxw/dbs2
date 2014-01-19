@@ -57,9 +57,8 @@ Total&	342,453 s	&	144,938 s	&	57,677\\
 
 \subsubsection*{Maßnahmen für Query 1}
 Zuerst werden detaillierte Statistiken für das Attribut \verb=L_SHIPDATE=
-gesammelt. Diese helfen bei der Aufwandsabschätzung, da mittels diesem Attribut
-selektiert wird. Zusätzlich wird noch ein Index auf \verb=L_LINESTATUS,
-L_RETURNFLAG= erstellt. Dieser ist hilfreich, da dies die Gruppierungsattribute
+gesammelt. Diese helfen bei der Aufwandsabschätzung, da mittels dieses Attributs
+selektiert wird. Zusätzlich wird noch ein Index auf \verb=L_LINESTATUS, L_RETURNFLAG= erstellt. Dieser ist hilfreich, da dies die Gruppierungsattribute
 sind.
 
 \subsubsection*{Maßnahmen für Query 2}
@@ -74,8 +73,7 @@ Hier haben wir einen Index auf \verb=C_MKTSEGMENT, C_CUSTKEY= erstellt, der
 den Join, in dem die beiden Attribute enthalten sind, vereinfacht.
 
 \subsubsection*{Maßnahmen für Query 4}
-Um die Subanfrage zu beschleunigen, haben wir einen Index auf \verb=L_ORDERKEY,
-L_COMMITDATE, L_RECEIPTDATE= erstellt.
+Um die Subanfrage zu beschleunigen, haben wir einen Index auf \verb=L_ORDERKEY, L_COMMITDATE, L_RECEIPTDATE= erstellt.
 
 \subsubsection*{Maßnahmen für Query 5, 7, 11, 18, 21}
 Hier hat uns dbadvis veschiedene Indizes vorgeschlagen, die einfach alle
@@ -85,6 +83,8 @@ reduzieren.
 \subsection{Alle anderen}
 Für alle anderen Queries haben wir keine Änderungen vorgenommen, diese haben von
 den zahlreichen erstellten Indizes profitiert, und auch deutlich an
-Geschwindigkeit gewonnen.
+Geschwindigkeit gewonnen. Einige wenige Anfragen haben sich um $~0,1$ Sekunden
+verschlechtert. Der Benchmark wurde auf Rechnern im Poolraum im ersten Stock des
+A-Gebäudes durchgeführt.
 
 \end{document}
