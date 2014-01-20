@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.80]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+
+\lhead{\textbf{Datenbanksysteme II}\\
+\textbf{Lösung von Aufgabe 3}}
+\rhead{\textbf{Felix Wolff, Markus Petrykowski}\\
+\textbf{Übungsgruppe B}}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\textbf{Erste Runde}
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c}
+    Menge & ${E,F}$ & ${E,G}$ & ${E,H}$ & ${F,G}$ & ${F,H}$ & ${G,H}$\\
+    Kardinalität & 20 & 10 & 800 & 240 & 200 & 80\\
+    Kosten & 0 & 0 & 0 & 0 & 0 & 0\\
+    Reihenfolge & $E\bowtie F$ & $E\bowtie G$ & $E\bowtie H$ & $F\bowtie G$ & $F\bowtie H$ & $G\bowtie H$\\
+\end{tabular}
+\end{center}
+
+\textbf{Zweite Runde:} Dem Prinzip der Optimalität folgend wird nur der beste Teilplan weiter beobachtet- also $E \bowtie G$.
+Dabei werden wegen \textit{Containment of Value Sets} die jeweiligen kleinsten Distinct-Werte der Joinergebnisse für die Rechnung verwendet. Also z.B. $V(E \bowtie G, A) = 50 = min(1000,50)$.
+\begin{center}
+\begin{tabular}{c|c|c}
+    Menge & ${E,G,F}$ & ${E,G,H}$\\
+    Kardinalität & $\frac{4}{500}$ & $\frac{8}{500}$ \\
+    Kosten & 10 & 10\\
+    Reihenfolge & $(E\bowtie G)\bowtie F$ & $(E\bowtie G)\bowtie H$\\
+\end{tabular}
+\end{center}
+
+\textbf{Dritte Runde:}  Es kann nur einen geben (unter der gleichen Betrachtung wie in der zweiten Runde)
+\begin{center}
+\begin{tabular}{c|c}
+    Menge & ${E,G,F,H}$ \\
+    Kardinalität & $\frac{1}{62500}$ \\
+    Kosten & 10 \\
+    Reihenfolge & $((E\bowtie G)\bowtie F) \bowtie H$ \\
+\end{tabular}
+\end{center}
+\end{document}
+% vim: tw=80
