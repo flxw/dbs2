@@ -22,8 +22,15 @@
 \renewcommand{\footrulewidth}{0pt}
 
 \begin{document}
-\tetxbf{Aufgabe 1a: } Ja, es ist UNDO-Logging, da es REDO-Logging nicht sein kann.
-\textbf{Aufgabe 1b: } Nein, das kann es nicht sein. Betrachtet man die Einträge in denen D modifiziert wird,
+\noindent 
+\textbf{Aufgabe 1a: } 
+
+\noindent
+Ja, es ist UNDO-Logging, da es REDO-Logging nicht sein kann.
+\newline
+\textbf{Aufgabe 1b: } 
+
+\noindent Nein, das kann es nicht sein. Betrachtet man die Einträge in denen D modifiziert wird,
 					  so sieht man, dass die Werte auf 450 und 18 geändert werden. Sieht man auf Platte nach, so steht dort jedoch 
 					  eine 4. Aufgrund der Tatsache, dass beim Checkpoint, der \textit{vor} der Änderung nach 18 ist, die Buffer geflusht werden, müsste sich also mindestens die 450 auf Platte befinden. Die Änderung nach 18 von T2 könnte
 					  es noch nicht auf Platte geschafft haben, weil die Buffer noch nicht geflusht wurden. Wegen des Checkpoints jedoch muss mindestens die 450 geschrieben worden sein. Daher kann es kein UNDO-Logging sein.
